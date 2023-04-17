@@ -5,7 +5,11 @@ import { styles } from './styles';
 
 export function Home() {
   function handleTaskAdd() {
-    console.log('Você clicou no botão de adicionar!');
+    console.log('Você clicou em adicionar tarefa!');
+  }
+
+  function handleTaskRemove(description: string) {
+    console.log(`Você clicou em remover tarefa ${description}!`);
   }
 
   return (
@@ -22,8 +26,14 @@ export function Home() {
           <Text style={styles.buttonText}>+</Text>
         </TouchableOpacity>
       </View>
-      <Task description="Estudar react" />
-      <Task description="Estudar node" />
+      <Task
+        description="Estudar react"
+        onRemove={() => handleTaskRemove('Estudar react')}
+      />
+      <Task
+        description="Estudar node"
+        onRemove={() => handleTaskRemove('Estudar node')}
+      />
     </View>
   );
 }

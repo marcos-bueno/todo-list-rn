@@ -1,4 +1,6 @@
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { Task } from '../../components/Task';
+
 import { styles } from './styles';
 
 export function Home() {
@@ -20,6 +22,8 @@ export function Home() {
           <Text style={styles.buttonText}>+</Text>
         </TouchableOpacity>
       </View>
+      <Task />
+      <Task />
     </View>
   );
 }

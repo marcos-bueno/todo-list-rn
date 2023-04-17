@@ -1,15 +1,32 @@
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
 import { Task } from '../../components/Task';
 
 import { styles } from './styles';
 
 export function Home() {
+  const tasks = [
+    'Estudar react',
+    'Estudar angular',
+    'Estudar vuejs',
+    'Estudar react native',
+    'Estudar tailwind css',
+    'Estudar chakra ui',
+    'Estudar bootstrap',
+    'Estudar node',
+  ];
+
   function handleTaskAdd() {
     console.log('Você clicou em adicionar tarefa!');
   }
 
-  function handleTaskRemove(description: string) {
-    console.log(`Você clicou em remover tarefa ${description}!`);
+  function handleTaskRemove(task: string) {
+    console.log(`Você clicou em remover tarefa ${task}!`);
   }
 
   return (
@@ -26,14 +43,15 @@ export function Home() {
           <Text style={styles.buttonText}>+</Text>
         </TouchableOpacity>
       </View>
-      <Task
-        description="Estudar react"
-        onRemove={() => handleTaskRemove('Estudar react')}
-      />
-      <Task
-        description="Estudar node"
-        onRemove={() => handleTaskRemove('Estudar node')}
-      />
+      <ScrollView showsVerticalScrollIndicator={false}>
+        {tasks.map((task) => (
+          <Task
+            key={task}
+            description={task}
+            onRemove={() => handleTaskRemove(`${task}`)}
+          />
+        ))}
+      </ScrollView>
     </View>
   );
 }

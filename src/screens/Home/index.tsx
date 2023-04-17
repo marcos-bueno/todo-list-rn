@@ -1,7 +1,11 @@
-import { View, Text, TextInput } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { styles } from './styles';
 
 export function Home() {
+  function handleTaskAdd() {
+    console.log('Você clicou no botão de adicionar!');
+  }
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Tarefas</Text>
@@ -11,6 +15,9 @@ export function Home() {
         placeholder="Adicione uma tarefa..."
         placeholderTextColor="#6B6B6B"
       />
+      <TouchableOpacity style={styles.button} onPress={handleTaskAdd}>
+        <Text style={styles.buttonText}>+</Text>
+      </TouchableOpacity>
     </View>
   );
 }

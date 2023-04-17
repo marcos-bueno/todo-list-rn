@@ -22,8 +22,8 @@ export function Home() {
           <Text style={styles.buttonText}>+</Text>
         </TouchableOpacity>
       </View>
-      <Task />
-      <Task />
+      <Task description="Estudar react" />
+      <Task description="Estudar node" />
     </View>
   );
 }

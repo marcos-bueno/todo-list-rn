@@ -3,7 +3,7 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  ScrollView,
+  FlatList,
 } from 'react-native';
 import { Task } from '../../components/Task';
 
@@ -43,7 +43,22 @@ export function Home() {
           <Text style={styles.buttonText}>+</Text>
         </TouchableOpacity>
       </View>
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <FlatList
+        data={tasks}
+        keyExtractor={(item) => item}
+        renderItem={({ item }) => (
+          <Task
+            key={item}
+            description={item}
+            onRemove={() => handleTaskRemove(`${item}`)}
+          />
+        )}
+        showsVerticalScrollIndicator={false}
+        ListEmptyComponent={() => (
+          <Text style={styles.listEmptyText}>Nenhuma tarefa cadastrada!</Text>
+        )}
+      />
+      {/* <ScrollView showsVerticalScrollIndicator={false}>
         {tasks.map((task) => (
           <Task
             key={task}
@@ -51,7 +66,7 @@ export function Home() {
             onRemove={() => handleTaskRemove(`${task}`)}
           />
         ))}
-      </ScrollView>
+      </ScrollView> */}
     </View>
   );
 }

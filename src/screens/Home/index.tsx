@@ -9,9 +9,10 @@ import {
 import { Task } from '../../components/Task';
 
 import { styles } from './styles';
+import { useState } from 'react';
 
 export function Home() {
-  const tasks = [
+  const [tasks, setTasks] = useState([
     'Estudar react',
     'Estudar angular',
     'Estudar vuejs',
@@ -20,16 +21,16 @@ export function Home() {
     'Estudar chakra ui',
     'Estudar bootstrap',
     'Estudar node',
-  ];
+  ]);
 
   function handleTaskAdd() {
-    if (tasks.includes('Estudar react'))
+    if (tasks.includes('tarefa 123'))
       return Alert.alert(
         'Oops',
         'Já existe uma tarefa na lista com esse nome.'
       );
 
-    console.log('Você clicou em adicionar tarefa!');
+    setTasks((prevState) => [...prevState, 'nova tarefa']);
   }
 
   function handleTaskRemove(task: string) {

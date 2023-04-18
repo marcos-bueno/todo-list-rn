@@ -4,6 +4,7 @@ import {
   TextInput,
   TouchableOpacity,
   FlatList,
+  Alert,
 } from 'react-native';
 import { Task } from '../../components/Task';
 
@@ -22,10 +23,27 @@ export function Home() {
   ];
 
   function handleTaskAdd() {
+    if (tasks.includes('Estudar react'))
+      return Alert.alert(
+        'Oops',
+        'Já existe uma tarefa na lista com esse nome.'
+      );
+
     console.log('Você clicou em adicionar tarefa!');
   }
 
   function handleTaskRemove(task: string) {
+    Alert.alert('Remover', `Remover a tarefa ${task}?`, [
+      {
+        text: 'Sim',
+        onPress: () => Alert.alert('Deletado!'),
+      },
+      {
+        text: 'Não',
+        style: 'cancel',
+      },
+    ]);
+
     console.log(`Você clicou em remover tarefa ${task}!`);
   }
 

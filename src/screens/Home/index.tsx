@@ -30,7 +30,8 @@ export function Home() {
     Alert.alert('Remover', `Remover a tarefa ${task}?`, [
       {
         text: 'Sim',
-        onPress: () => Alert.alert('Deletado!'),
+        onPress: () =>
+          setTasks((prevState) => prevState.filter((item) => item !== task)),
       },
       {
         text: 'Não',

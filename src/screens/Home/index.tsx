@@ -12,25 +12,18 @@ import { styles } from './styles';
 import { useState } from 'react';
 
 export function Home() {
-  const [tasks, setTasks] = useState([
-    'Estudar react',
-    'Estudar angular',
-    'Estudar vuejs',
-    'Estudar react native',
-    'Estudar tailwind css',
-    'Estudar chakra ui',
-    'Estudar bootstrap',
-    'Estudar node',
-  ]);
+  const [tasks, setTasks] = useState<string[]>([]);
+  const [taskDescription, setTaskDescription] = useState('');
 
   function handleTaskAdd() {
-    if (tasks.includes('tarefa 123'))
+    if (tasks.includes(taskDescription))
       return Alert.alert(
         'Oops',
         'Já existe uma tarefa na lista com esse nome.'
       );
 
-    setTasks((prevState) => [...prevState, 'nova tarefa']);
+    setTasks((prevState) => [...prevState, taskDescription]);
+    setTaskDescription('');
   }
 
   function handleTaskRemove(task: string) {
@@ -57,6 +50,8 @@ export function Home() {
           style={styles.input}
           placeholder="Adicione uma tarefa..."
           placeholderTextColor="#6B6B6B"
+          onChangeText={(e) => setTaskDescription(e)}
+          value={taskDescription}
         />
         <TouchableOpacity style={styles.button} onPress={handleTaskAdd}>
           <Text style={styles.buttonText}>+</Text>
